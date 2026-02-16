@@ -6,7 +6,7 @@
     <p v-if="error" class="load-more__text">
       Произошла ошибка, попробуйте позже
     </p>
-    <button v-if="!loading" class="load-more__button" @click="loadMoreButtonClick">
+    <button v-if="!loading" class="load-more__button" @click="emit('click')">
       {{ error ? 'Повторить' : 'Показать ещё' }}
     </button>
   </div>
@@ -24,20 +24,13 @@ const props = defineProps({
   },
 })
 
-function loadMoreButtonClick() {
-  if (props.error) {
-    $emit('retry')
-  }
-  else {
-    $emit('click')
-  }
-}
+const emit = defineEmits(['click'])
 </script>
 
 <style scoped lang="scss">
 .load-more {
   min-height: 100px;
-  margin: 110px auto 100px;
+  margin: 0 auto 100px;
   display: flex;
   justify-content: center;
   align-items: center;
