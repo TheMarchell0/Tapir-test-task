@@ -61,7 +61,7 @@ const links: HeaderLink[] = [
     align-items: center;
     width: 100%;
 
-    @include tablet {
+    @include to-laptop {
       justify-content: space-between;
     }
   }
@@ -83,7 +83,7 @@ const links: HeaderLink[] = [
     align-items: center;
     gap: 40px;
 
-    @include tablet {
+    @include to-laptop {
       display: none;
     }
 
@@ -98,13 +98,9 @@ const links: HeaderLink[] = [
   &__burger {
     width: 40px;
     height: 40px;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--gray1);
 
-    @include tablet {
-      display: flex;
+    @include from-tablet {
+      display: none;
     }
   }
 }

@@ -21,6 +21,9 @@ withDefaults(defineProps<Props>(), {
 
 <style lang="scss">
 .app-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
