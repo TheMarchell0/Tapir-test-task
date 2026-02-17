@@ -9,14 +9,14 @@
 </template>
 
 <script setup>
-import CatalogList from '../components/catalog/CatalogList.vue'
-
 useHead({
   title: 'Каталог - Тестовое задание',
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+@use '@/styles/mixins' as *;
+
 .catalog {
   &__title {
     font-weight: 500;
@@ -26,6 +26,11 @@ useHead({
     color: var(--black);
     text-align: center;
     margin: 100px 0 110px;
+
+    @include mobile {
+      font-size: 24px;
+      margin: 20px 0 40px;
+    }
   }
 }
 </style>

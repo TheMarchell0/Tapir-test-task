@@ -1,5 +1,5 @@
-@import './fonts.scss';
-@import './variables.scss';
+@use './fonts' as *;
+@use './variables' as *;
 
 body,
 button {
@@ -43,10 +43,13 @@ ul {
   list-style-type: none;
 }
 
+section {
+  width: 100%;
+}
+
 .container {
   position: relative;
   max-width: 1320px;
-  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }

@@ -9,13 +9,11 @@
 </template>
 
 <script setup>
-import Footer from '../components/Footer.vue'
-import Header from '../components/Header.vue'
 </script>
 
-<style scoped>
+<style>
 .main-container {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
 }

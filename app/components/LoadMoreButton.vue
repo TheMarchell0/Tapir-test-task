@@ -6,9 +6,9 @@
     <p v-if="error" class="load-more__text">
       Произошла ошибка, попробуйте позже
     </p>
-    <button v-if="!loading" class="load-more__button" @click="emit('click')">
+    <AppButton v-if="!loading" type="outlined" @click="emit('click')">
       {{ error ? 'Повторить' : 'Показать ещё' }}
-    </button>
+    </AppButton>
   </div>
 </template>
 
@@ -27,7 +27,9 @@ const props = defineProps({
 const emit = defineEmits(['click'])
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+@use '@/styles/mixins' as *;
+
 .load-more {
   min-height: 100px;
   margin: 0 auto 100px;
@@ -35,6 +37,11 @@ const emit = defineEmits(['click'])
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  @include mobile {
+    margin: 0 auto 40px;
+    min-height: initial;
+  }
 
   &__text {
     font-weight: 400;

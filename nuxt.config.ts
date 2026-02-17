@@ -8,8 +8,15 @@ export default defineNuxtConfig({
     head: {
       title: 'Тестовое задание',
       meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-      ]
-    }
-  }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+    },
+  },
+  modules: [
+    '@nuxt/image',
+  ],
+  image: {
+    format: ['webp'],
+    domains: ['test-task-api.tapir.ws'],
+  },
 })

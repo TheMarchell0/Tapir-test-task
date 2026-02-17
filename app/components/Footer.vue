@@ -1,89 +1,14 @@
 <template>
   <footer class="footer">
     <div class="footer__container container">
-      <div class="footer__column">
+      <div v-for="column in columns" :key="column.title" class="footer__column">
         <p class="footer__column-title">
-          Каталог
+          {{ column.title }}
         </p>
 
         <ul class="footer__column-list">
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Все бренды</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Nike</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Adidas</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Puma</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">New Balance</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="footer__column">
-        <p class="footer__column-title">
-          Помощь
-        </p>
-
-        <ul class="footer__column-list">
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Доставка</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Заказ и оплата</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Обмен и Возврат </a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">F. A. Q.</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="footer__column">
-        <p class="footer__column-title">
-          Информация
-        </p>
-
-        <ul class="footer__column-list">
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Преимущества</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Гарантия и безопасность</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Индивидуальный заказ</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Акции</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="footer__column">
-        <p class="footer__column-title">
-          Компания
-        </p>
-
-        <ul class="footer__column-list">
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">О нас</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Блог</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Отзывы</a>
-          </li>
-          <li class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">Контакты</a>
+          <li v-for="link in column.links" :key="link" class="footer__column-list-item">
+            <a href="#" class="footer__column-list-text">{{ link }}</a>
           </li>
         </ul>
       </div>
@@ -92,18 +17,67 @@
 </template>
 
 <script setup lang="ts">
+const columns = [
+  {
+    title: 'Каталог',
+    links: [
+      'Все бренды',
+      'Nike',
+      'Adidas',
+      'Puma',
+      'New Balance',
+    ],
+  },
+  {
+    title: 'Помощь',
+    links: [
+      'Доставка',
+      'Заказ и оплата',
+      'Обмен и Возврат',
+      'F. A. Q.',
+    ],
+  },
+  {
+    title: 'Информация',
+    links: [
+      'Преимущества',
+      'Гарантия и безопасность',
+      'Индивидуальный заказ',
+      'Акции',
+    ],
+  },
+  {
+    title: 'Компания',
+    links: [
+      'О нас',
+      'Блог',
+      'Отзывы',
+      'Контакты',
+    ],
+  },
+]
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+@use '@/styles/mixins' as *;
+
 .footer {
   background-color: var(--black);
   color: var(--white);
   padding: 100px 0;
 
+  @include mobile {
+    padding: 57px 0 63px;
+  }
+
   &__container {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+
+    @include mobile {
+      gap: 60px;
+    }
   }
 
   &__column {

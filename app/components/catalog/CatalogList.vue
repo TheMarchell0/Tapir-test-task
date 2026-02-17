@@ -18,11 +18,8 @@
 </template>
 
 <script setup>
-import { useMediaQuery } from '@vueuse/core'
 import { ref } from 'vue'
-import CatalogCard from '../../components/catalog/CatalogCard.vue'
-import LoadMoreButton from '../../components/LoadMoreButton.vue'
-import { fetchProducts } from '../../services/api.js'
+import { fetchProducts } from '@/services/api.js'
 
 const products = ref([])
 const page = ref(1)
@@ -30,9 +27,15 @@ const loading = ref(false)
 const error = ref(false)
 const hasMore = ref(true)
 
-const isMobile = useMediaQuery('(max-width: 767px)')
+const { isMobile } = useResponsive()
 
 const limit = computed(() => (isMobile.value ? 6 : 16))
+
+watch(isMobile, () => {
+  page.value = 1
+  products.value = []
+  loadProducts()
+})
 
 async function loadProducts() {
   loading.value = true
@@ -64,13 +67,30 @@ async function loadProducts() {
 loadProducts()
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+@use '@/styles/mixins' as *;
+
 .catalog-content {
   &__list {
     display: grid;
-    grid-template-columns: repeat(4, 290px);
+    grid-template-columns: repeat(4, minmax(290px, 1fr));
     gap: 40px;
     margin-bottom: 110px;
+
+    @include laptop {
+      grid-template-columns: repeat(3, minmax(270px, 1fr));
+    }
+
+    @include tablet {
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      margin-bottom: 50px;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(2, minmax(150px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
   }
 }
 </style>
