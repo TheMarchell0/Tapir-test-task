@@ -4,7 +4,7 @@ export const tapirApi = $fetch.create({
 
 export function useTapirApi() {
   function fetchProducts(page = 1, limit = 1) {
-    return tapirApi('/products', {
+    return tapirApi<ProductResponse>('/products', {
       query: {
         page,
         limit,

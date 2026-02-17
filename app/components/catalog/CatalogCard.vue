@@ -9,15 +9,15 @@
   </NuxtLink>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import type { Product } from '#shared/types/tapirApi'
 import Favorite from '@/components/icons/Favorite.vue'
 
-const props = defineProps({
-  product: {
-    type: Object,
-    required: true,
-  },
-})
+interface Props {
+  product: Product
+}
+
+defineProps<Props>()
 </script>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 <template>
   <div class="catalog-content">
-    <div class="catalog-content__list">
+    <div v-if="!!data" class="catalog-content__list">
       <CatalogCard
         v-for="product in data.products"
         :key="product.id"
@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 const CATALOG_KEY = 'catalog-list'
@@ -34,7 +34,7 @@ const { data, error, pending, clear: clearCache } = useAsyncData(
   async (nuxtApp) => {
     const data = await fetchProducts(page.value, limit.value)
 
-    const previousData = nuxtApp._asyncData[CATALOG_KEY]?.data.value
+    const previousData = nuxtApp._asyncData[CATALOG_KEY]?.data.value as ProductResponse
 
     if (previousData) {
       data.products = [...previousData.products, ...data.products]
@@ -48,7 +48,10 @@ const { data, error, pending, clear: clearCache } = useAsyncData(
 )
 
 const hasMore = computed(() => {
-  return page.value < data.value?.totalPages
+  if (!data.value) {
+    return false
+  }
+  return page.value < data.value.totalPages
 })
 
 watch(limit, () => {

@@ -8,7 +8,7 @@
   </section>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 useHead({
   title: 'Каталог - Тестовое задание',
 })

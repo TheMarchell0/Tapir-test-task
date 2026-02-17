@@ -9,15 +9,14 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { computed } from 'vue'
 
-const props = defineProps({
-  price: {
-    type: Number || String,
-    required: true,
-  },
-})
+interface Props {
+  price: number | string
+}
+
+const props = defineProps<Props>()
 
 const priceX2 = computed(() => Math.ceil(Number(props.price) / 2))
 </script>

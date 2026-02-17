@@ -9,41 +9,41 @@
       </div>
 
       <nav class="header__nav">
-        <NuxtLink to="#" class="header__nav-link">
-          Мужчинам
-        </NuxtLink>
-        <NuxtLink to="#" class="header__nav-link">
-          Женщинам
-        </NuxtLink>
-        <NuxtLink to="#" class="header__nav-link">
-          Каталог
-        </NuxtLink>
-        <NuxtLink to="#" class="header__nav-link">
-          Доставка
-        </NuxtLink>
-        <NuxtLink to="#" class="header__nav-link">
-          Блог
-        </NuxtLink>
-        <NuxtLink to="#" class="header__nav-link">
-          О нас
+        <NuxtLink v-for="link in links" :key="link.label" :to="link.to" class="header__nav-link">
+          {{ link.label }}
         </NuxtLink>
       </nav>
 
-      <div class="header__burger">
+      <AppButton class="header__burger" type="secondary" size="small">
         <Burger />
-      </div>
+      </AppButton>
     </div>
   </header>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import type { RouteLocationRaw } from 'vue-router'
 import { useRoute } from '#app'
 import { computed } from 'vue'
 import Burger from '~/components/icons/Burger.vue'
 
+interface HeaderLink {
+  label: string
+  to: RouteLocationRaw
+}
+
 const route = useRoute()
 
 const isHomePage = computed(() => route.path === '/')
+
+const links: HeaderLink[] = [
+  { label: 'Мужчинам', to: '#' },
+  { label: 'Женщинам', to: '#' },
+  { label: 'Каталог', to: '#' },
+  { label: 'Доставка', to: '#' },
+  { label: 'Блог', to: '#' },
+  { label: 'О нас', to: '#' },
+]
 </script>
 
 <style lang="scss">

@@ -6,25 +6,23 @@
     <p v-if="error" class="load-more__text">
       Произошла ошибка, попробуйте позже
     </p>
-    <AppButton v-if="!loading" type="outlined" @click="emit('click')">
+    <AppButton v-if="!loading" type="outlined" v-bind="$attrs">
       {{ error ? 'Повторить' : 'Показать ещё' }}
     </AppButton>
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  loading: {
-    type: Boolean,
-    required: true,
-  },
-  error: {
-    type: Boolean,
-    required: true,
-  },
+<script lang="ts" setup>
+interface Props {
+  loading: boolean
+  error: boolean
+}
+
+defineOptions({
+  inheritAttrs: false,
 })
 
-const emit = defineEmits(['click'])
+defineProps<Props>()
 </script>
 
 <style lang="scss">

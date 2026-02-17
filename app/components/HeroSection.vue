@@ -1,21 +1,17 @@
 <template>
-  <section class="home-page">
-    <h1 class="home-page__title">
+  <section class="hero-section">
+    <h1 class="hero-section__title">
       Тестовое задание
     </h1>
 
-    <AppButton type="primary" @click="navigateTo('/catalog')">
+    <AppButton class="hero-section__to-catalog" type="primary" @click="navigateTo('/catalog')">
       В каталог
     </AppButton>
   </section>
 </template>
 
-<script setup>
-
-</script>
-
 <style lang="scss">
-.home-page {
+.hero-section {
   &__title {
     font-weight: 500;
     font-size: 64px;
@@ -31,14 +27,8 @@
     }
   }
 
-  &__button {
+  &__to-catalog {
     min-width: 124px;
-    min-height: 40px;
-    background: var(--red);
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 143%;
-    color: var(--white);
   }
 }
 </style>

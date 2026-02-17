@@ -1,15 +1,12 @@
 <template>
-  <Header />
+  <AppHeader />
   <main>
     <div class="main-container container">
       <slot />
     </div>
   </main>
-  <Footer />
+  <AppFooter />
 </template>
-
-<script setup>
-</script>
 
 <style>
 .main-container {

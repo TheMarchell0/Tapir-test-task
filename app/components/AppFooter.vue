@@ -7,9 +7,9 @@
         </p>
 
         <ul class="footer__column-list">
-          <li v-for="link in column.links" :key="link" class="footer__column-list-item">
-            <NuxtLink to="#" class="footer__column-list-text">
-              {{ link }}
+          <li v-for="link in column.links" :key="link.label" class="footer__column-list-item">
+            <NuxtLink :to="link.to" class="footer__column-list-text">
+              {{ link.label }}
             </NuxtLink>
           </li>
         </ul>
@@ -19,42 +19,54 @@
 </template>
 
 <script setup lang="ts">
-const columns = [
+import type { RouteLocationRaw } from 'vue-router'
+
+interface FooterLink {
+  label: string
+  to: RouteLocationRaw
+}
+
+interface FooterColumn {
+  title: string
+  links: FooterLink[]
+}
+
+const columns: FooterColumn[] = [
   {
     title: 'Каталог',
     links: [
-      'Все бренды',
-      'Nike',
-      'Adidas',
-      'Puma',
-      'New Balance',
+      { label: 'Все бренды', to: '#' },
+      { label: 'Nike', to: '#' },
+      { label: 'Adidas', to: '#' },
+      { label: 'Puma', to: '#' },
+      { label: 'New Balance', to: '#' },
     ],
   },
   {
     title: 'Помощь',
     links: [
-      'Доставка',
-      'Заказ и оплата',
-      'Обмен и Возврат',
-      'F. A. Q.',
+      { label: 'Доставка', to: '#' },
+      { label: 'Заказ и оплата', to: '#' },
+      { label: 'Обмен и Возврат', to: '#' },
+      { label: 'F. A. Q.', to: '#' },
     ],
   },
   {
     title: 'Информация',
     links: [
-      'Преимущества',
-      'Гарантия и безопасность',
-      'Индивидуальный заказ',
-      'Акции',
+      { label: 'Преимущества', to: '#' },
+      { label: 'Гарантия и безопасность', to: '#' },
+      { label: 'Индивидуальный заказ', to: '#' },
+      { label: 'Акции', to: '#' },
     ],
   },
   {
     title: 'Компания',
     links: [
-      'О нас',
-      'Блог',
-      'Отзывы',
-      'Контакты',
+      { label: 'О нас', to: '#' },
+      { label: 'Блог', to: '#' },
+      { label: 'Отзывы', to: '#' },
+      { label: 'Контакты', to: '#' },
     ],
   },
 ]
