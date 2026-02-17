@@ -2,7 +2,7 @@
   <div class="catalog-content">
     <div class="catalog-content__list">
       <CatalogCard
-        v-for="product in products"
+        v-for="product in data.products"
         :key="product.id"
         :product="product"
       />
@@ -10,9 +10,9 @@
 
     <LoadMoreButton
       v-if="hasMore"
-      :error="error"
-      :loading="loading"
-      @click="loadProducts"
+      :error="!!error"
+      :loading="pending"
+      @click="page++"
     />
   </div>
 </template>
@@ -21,50 +21,40 @@
 import { ref } from 'vue'
 import { fetchProducts } from '@/services/api.js'
 
-const products = ref([])
-const page = ref(1)
-const loading = ref(false)
-const error = ref(false)
-const hasMore = ref(true)
+const CATALOG_KEY = 'catalog-list'
 
 const { isMobile } = useResponsive()
 
+const page = ref(1)
+
 const limit = computed(() => (isMobile.value ? 6 : 16))
 
-watch(isMobile, () => {
-  page.value = 1
-  products.value = []
-  loadProducts()
-})
-
-async function loadProducts() {
-  loading.value = true
-  error.value = false
-
-  try {
+const { data, error, pending, clear: clearCache } = useAsyncData(
+  CATALOG_KEY,
+  async (nuxtApp) => {
     const { data } = await fetchProducts(page.value, limit.value)
 
-    products.value.push(...data.products)
+    const previousData = nuxtApp._asyncData[CATALOG_KEY]?.data.value
 
-    if (data.products.length < limit.value) {
-      hasMore.value = false
+    if (previousData) {
+      data.products = [...previousData.products, ...data.products]
     }
 
-    else {
-      page.value++
-    }
-  }
+    return data
+  },
+  {
+    watch: [page, limit],
+  },
+)
 
-  catch (e) {
-    error.value = true
-  }
+const hasMore = computed(() => {
+  return page.value < data.value?.totalPages
+})
 
-  finally {
-    loading.value = false
-  }
-}
-
-loadProducts()
+watch(limit, () => {
+  page.value = 1
+  clearCache()
+}, { flush: 'sync' })
 </script>
 
 <style lang="scss">
