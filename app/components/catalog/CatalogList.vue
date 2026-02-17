@@ -19,11 +19,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { fetchProducts } from '@/services/api.js'
 
 const CATALOG_KEY = 'catalog-list'
 
 const { isMobile } = useResponsive()
+const { fetchProducts } = useTapirApi()
 
 const page = ref(1)
 
@@ -32,7 +32,7 @@ const limit = computed(() => (isMobile.value ? 6 : 16))
 const { data, error, pending, clear: clearCache } = useAsyncData(
   CATALOG_KEY,
   async (nuxtApp) => {
-    const { data } = await fetchProducts(page.value, limit.value)
+    const data = await fetchProducts(page.value, limit.value)
 
     const previousData = nuxtApp._asyncData[CATALOG_KEY]?.data.value
 

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
   ssr: true,
-  css: ['/styles/main.scss'],
+  css: ['@/assets/styles/main.scss'],
   app: {
     head: {
       title: 'Тестовое задание',
@@ -24,7 +24,7 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           additionalData: `
-            @use '@/styles/mixins' as *;
+            @use '@/assets/styles/mixins' as *;
           `,
         },
       },
