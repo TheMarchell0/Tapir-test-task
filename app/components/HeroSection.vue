@@ -15,8 +15,6 @@
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .home-page {
   &__title {
     font-weight: 500;

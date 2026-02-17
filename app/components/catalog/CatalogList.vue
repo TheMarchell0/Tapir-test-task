@@ -68,8 +68,6 @@ loadProducts()
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .catalog-content {
   &__list {
     display: grid;

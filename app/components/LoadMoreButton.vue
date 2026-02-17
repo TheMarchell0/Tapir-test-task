@@ -28,8 +28,6 @@ const emit = defineEmits(['click'])
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .load-more {
   min-height: 100px;
   margin: 0 auto 100px;

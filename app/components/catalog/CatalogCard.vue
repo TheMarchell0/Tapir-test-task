@@ -1,15 +1,12 @@
 <template>
-  <a class="catalog-item">
-    <p>{{ product.id }}</p>
+  <NuxtLink class="catalog-item" to="#">
     <NuxtImg class="catalog-item__img" :src="product.image" :alt="product.name" />
     <ProductPrices :price="product.price" />
     <h3 class="catalog-item__name">
       {{ product.name }}
     </h3>
-    <div class="catalog-item__favorite">
-      <Favorite />
-    </div>
-  </a>
+    <Favorite class="catalog-item__favorite" />
+  </NuxtLink>
 </template>
 
 <script setup>
@@ -24,8 +21,6 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .catalog-item {
   position: relative;
   cursor: pointer;
@@ -71,6 +66,7 @@ const props = defineProps({
     top: 9px;
     right: 3px;
     transition: color 0.1s linear;
+    color: var(--black);
 
     &:hover {
       color: var(--red)
@@ -79,6 +75,7 @@ const props = defineProps({
     @include mobile {
       top: 0;
       right: 7px;
+      width: 20px;
     }
   }
 }

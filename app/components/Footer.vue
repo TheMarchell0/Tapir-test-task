@@ -8,7 +8,9 @@
 
         <ul class="footer__column-list">
           <li v-for="link in column.links" :key="link" class="footer__column-list-item">
-            <a href="#" class="footer__column-list-text">{{ link }}</a>
+            <NuxtLink to="#" class="footer__column-list-text">
+              {{ link }}
+            </NuxtLink>
           </li>
         </ul>
       </div>
@@ -59,8 +61,6 @@ const columns = [
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .footer {
   background-color: var(--black);
   color: var(--white);

@@ -2,19 +2,31 @@
   <header class="header">
     <div class="header__container container">
       <div class="header__logo">
-        <a v-if="!isHomePage" href="/">
-          <img src="../assets/images/logo.svg" alt="Логотип" width="42" height="42" class="header__logo-img">
-        </a>
-        <img v-else src="../assets/images/logo.svg" alt="Логотип" width="42" height="42" class="header__logo-img">
+        <NuxtLink v-if="!isHomePage" to="/">
+          <img src="/images/logo.svg" alt="Логотип" width="42" height="42" class="header__logo-img">
+        </NuxtLink>
+        <img v-else src="/images/logo.svg" alt="Логотип" width="42" height="42" class="header__logo-img">
       </div>
 
       <nav class="header__nav">
-        <a href="#" class="header__nav-link">Мужчинам</a>
-        <a href="#" class="header__nav-link">Женщинам</a>
-        <a href="#" class="header__nav-link">Каталог</a>
-        <a href="#" class="header__nav-link">Доставка</a>
-        <a href="#" class="header__nav-link">Блог</a>
-        <a href="#" class="header__nav-link">О нас</a>
+        <NuxtLink to="#" class="header__nav-link">
+          Мужчинам
+        </NuxtLink>
+        <NuxtLink to="#" class="header__nav-link">
+          Женщинам
+        </NuxtLink>
+        <NuxtLink to="#" class="header__nav-link">
+          Каталог
+        </NuxtLink>
+        <NuxtLink to="#" class="header__nav-link">
+          Доставка
+        </NuxtLink>
+        <NuxtLink to="#" class="header__nav-link">
+          Блог
+        </NuxtLink>
+        <NuxtLink to="#" class="header__nav-link">
+          О нас
+        </NuxtLink>
       </nav>
 
       <div class="header__burger">
@@ -35,8 +47,6 @@ const isHomePage = computed(() => route.path === '/')
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .header {
   display: flex;
   align-items: center;

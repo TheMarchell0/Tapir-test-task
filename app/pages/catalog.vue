@@ -15,8 +15,6 @@ useHead({
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .catalog {
   &__title {
     font-weight: 500;

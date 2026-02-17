@@ -13,10 +13,4 @@
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-svg {
-  @include mobile {
-    width: 20px;
-  }
-}
 </style>

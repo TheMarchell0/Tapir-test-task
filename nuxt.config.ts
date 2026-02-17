@@ -19,4 +19,15 @@ export default defineNuxtConfig({
     format: ['webp'],
     domains: ['test-task-api.tapir.ws'],
   },
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `
+            @use '@/styles/mixins' as *;
+          `,
+        },
+      },
+    },
+  },
 })

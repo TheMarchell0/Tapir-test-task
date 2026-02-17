@@ -23,8 +23,6 @@ const priceX2 = computed(() => Math.ceil(Number(props.price) / 2))
 </script>
 
 <style lang="scss">
-@use '@/styles/mixins' as *;
-
 .prices {
   display: flex;
   gap: 10px;
